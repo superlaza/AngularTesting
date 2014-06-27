@@ -9,7 +9,7 @@
     var toys = [
         { name: 'Woody', age: 2 },
         { name: 'Buzz', age: 3 },
-        { name: 'Zurg', age: 50 },
+        { name: 'Zurg', age: 50 }
     ];
 //Create initial angular module, args are name, dependency array.
     var app = angular.module("myMod", []);
