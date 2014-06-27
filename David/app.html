@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--Need to add ng-app directive with module name created in app.js;
+	The name is that which you gave the module only, no .js appendage;
+	This attaches the module created in app.js to this html page;
+-->
+<html ng-app="myMod">
+
+<head lang="en">
+    <!-- Obviously, we must load angular -->
+    <script type="text/javascript" src="angular.min.js"></script>
+    <!--This is the actual loading of the angular javascript-->
+    <script type="text/javascript" src="app.js"></script>
+</head>
+
+<!-- register controller function to body element, give it alias -->
+<body ng-controller="MyController as control">
+<!-- use expression to invoke app.js controller values found -->
+{{control.attr.str}}
+
+<!-- this button is to show ng-show/hide directive functionality -->
+<button ng-show="control.attr.bool">button</button>
+
+<!-- this exhibits the ng-repeat syntax and behavior -->
+<!-- need to have an iterable element in the js code -->
+<div ng-repeat="toy in control.toys">
+    {{toy.name}}<em>-{{toy.age}}</em>
+</div>
+
+<!-- Expressions allow for the display of variable values, and filters
+    allow us to format that output. Here are some examples-->
+<!-- The "|" character is basically pipe from bash. Feed the input
+    from the left into the filter on the right -->
+<!-- options are given after the colon ":"-->
+<div>
+    {{'13881234123123' | date:'MM/dd/yyyy @ h:mma'}}<br>
+    {{'this is me yelling' | uppercase}}<br>
+
+    <!-- limitTo is versatile, basically limits the input to the option
+        given-->
+    {{'Please don"t interrupt me while I speak' | limitTo:8}}<br>
+    <li ng-repeat="toy in control.toys | limitTo:2">{{toy.name | uppercase}}
+    </li><br>
+
+    <!-- minus sign inverts order -->
+    <li ng-repeat="toy in control.toys | orderBy:'-name'">{{toy.name | uppercase}}
+    </li>
+</div>
+</body>
+
+
+</html>
